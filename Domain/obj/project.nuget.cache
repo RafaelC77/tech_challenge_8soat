@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "ZE+76bq+O6O9INyYWPLZroXupt+Gj4WX3XQV0fHo5umNV70hFEtnhMHIevYCpll3fIrTZEh2DR+1y9we8pGJ8g==",
+  "success": true,
+  "projectFilePath": "/root/fiap/fase1/tech_challenge_fase1_8soat/Domain/Domain.csproj",
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/microsoft.netcore.app.ref/7.0.20/microsoft.netcore.app.ref.7.0.20.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.20/microsoft.aspnetcore.app.ref.7.0.20.nupkg.sha512"
+  ],
+  "logs": []
+}
