@@ -12,7 +12,7 @@ public class PedidoUseCase : IPedidoUseCase
         _pedidoRepository = pedidoRepository;
     }
 
-    public void AtualizarStatusPedido(int id, StatusPedido novoStatus)
+    public void AtualizarStatusPedido(Guid id, StatusPedido novoStatus)
     {
         var pedido = _pedidoRepository.ObterPorId(id);
         if (pedido == null) throw new Exception("Pedido não encontrado.");
@@ -28,7 +28,12 @@ public class PedidoUseCase : IPedidoUseCase
         _pedidoRepository.Adicionar(pedido);
     }
 
-    public Pedido ObterPorId(int id)
+    public void ExcluirPedido(Guid id)
+    {
+        _pedidoRepository.Excluir(id);
+    }
+
+    public Pedido ObterPorId(Guid id)
     {
         return _pedidoRepository.ObterPorId(id);
     }
@@ -36,5 +41,10 @@ public class PedidoUseCase : IPedidoUseCase
     public List<Pedido> ObterTodos()
     {
         return _pedidoRepository.ObterTodos();
+    }
+
+    public List<Pedido> ObterPorStatus(StatusPedido status)
+    {
+        return _pedidoRepository.ObterPorStatus(status);
     }
 }

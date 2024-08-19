@@ -1,34 +1,54 @@
 ﻿using Application.Repository;
 using Domain.Entities;
+using Infra.Context;
 
 namespace Infra.Repository;
 
 public class PedidoRepository : IPedidoRepository
 {
-    private readonly List<Pedido> _pedidos = new List<Pedido>();
+    private readonly FastFoodDbContext _context;
+
+    public PedidoRepository(FastFoodDbContext context)
+    {
+        _context = context;
+    }
+
     public void Adicionar(Pedido pedido)
     {
-        pedido.Id = _pedidos.Count + 1;
-        _pedidos.Add(pedido);
+        pedido.Id = Guid.NewGuid();
+        _context.Pedidos.Add(pedido);
+        _context.SaveChanges();
     }
 
     public void Atualizar(Pedido pedido)
     {
-        var pedidoExistente = ObterPorId(pedido.Id);
-        if (pedidoExistente != null)
+        var pedidoAtual = ObterPorId(pedido.Id);
+
+        if (pedidoAtual != null)
         {
-            _pedidos.Remove(pedidoExistente);
-            _pedidos.Add(pedido);
+            _context.Pedidos.Remove(pedidoAtual);
+            _context.Pedidos.Add(pedido);
         }
     }
 
-    public Pedido ObterPorId(int id)
+    public void Excluir(Guid id)
     {
-        return _pedidos.Single(c => c.Id == id);
+        var pedido = ObterPorId(id);
+        _context.Pedidos.Remove(pedido);
+    }
+
+    public Pedido ObterPorId(Guid id)
+    {
+        return _context.Pedidos.Single(c => c.Id == id);
+    }
+
+    public List<Pedido> ObterPorStatus(StatusPedido status)
+    {
+        return _context.Pedidos.Where(c => c.Status == status).ToList();
     }
 
     public List<Pedido> ObterTodos()
     {
-        return _pedidos;
+        return _context.Pedidos.ToList();
     }
 }

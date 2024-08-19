@@ -2,7 +2,7 @@
 {
     public class Pedido
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public Cliente Cliente { get; set; }
         public List<PedidoItem> Itens { get; set; }
         public StatusPedido Status { get; set; }

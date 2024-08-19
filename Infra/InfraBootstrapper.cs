@@ -14,5 +14,8 @@ public static class InfraBootstrapper
     public static void Register(IServiceCollection services)
     {
         services.AddTransient<IAuthenticationRepository, AuthenticationRepository>();
+        services.AddScoped<IPedidoRepository, PedidoRepository>();
+        services.AddScoped<IClienteRepository, ClienteRepository>();
+        services.AddScoped<IProdutoRepository, ProdutoRepository>();
     }
 }
