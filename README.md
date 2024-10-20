@@ -1,6 +1,6 @@
 # tech_challenge_fase1_8soat
 
-## Instruções
+## Instruções para rodar o projeto
 
 Na raiz do projeto execute o comando:
 
