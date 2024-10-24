@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foodappdeployment
+  labels:
+    app: foodappdeployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: foodappdeployment
+  template:
+    metadata:
+      labels:
+        app: foodappdeployment
+    spec:
+      containers:
+        - name: c-foodappdeployment
+          image: rafaelc710/fiap_tech_challenge
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ConnectionStrings__DefaultConnection
+              valueFrom:
+                configMapKeyRef:
+                  name: foodappconfig
+                  key: ConnectionStrings__DefaultConnection
+            - name: ASPNETCORE_URLS
+              valueFrom:
+                configMapKeyRef:
+                  name: foodappconfig
+                  key: ASPNETCORE_URLS
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: foodappconfig
+                  key: ASPNETCORE_ENVIRONMENT
+

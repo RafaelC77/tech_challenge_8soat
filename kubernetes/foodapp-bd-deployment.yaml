@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bddeployment
+  labels:
+    app: bddeployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bddeployment
+  template:
+    metadata:
+      labels:
+        app: bddeployment
+    spec:
+      containers:
+        - name: c-bddeployment
+          image: postgres:16
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: foodappconfig
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: foodappconfig
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: foodappconfig
+                  key: POSTGRES_DB
+          volumeMounts:
+            - name: shared
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: shared
+          persistentVolumeClaim:
+            claimName: foodapppvc

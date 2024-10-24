@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: foodappconfig
+  labels:
+    name: foodappconfig
+data:
+  ConnectionStrings__DefaultConnection: User ID=postgres;Password=postgres;Server=app_db;Port=5432;Database=SampleDbDriver; IntegratedSecurity=true;Pooling=true;
+  ASPNETCORE_URLS: http://+:8080
+  ASPNETCORE_ENVIRONMENT: Development
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_DB: SampleDbDriver
+  
