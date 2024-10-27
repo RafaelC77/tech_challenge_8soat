@@ -30,3 +30,7 @@ A seguir, execute os comandos abaixo na ordem em que estão:
 Para acessar o swagger use a seguinte URL:
 
 http://localhost:30300/swagger
+
+## Arquitetura do cluster kubernetes
+
+![image](https://github.com/user-attachments/assets/88e08b6d-98f2-441b-8121-4606268f8eeb)
