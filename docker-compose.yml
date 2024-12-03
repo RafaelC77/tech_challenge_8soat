@@ -6,7 +6,7 @@ networks:
 
 services:
   food-app:
-    image: docker.io/library/foodapp
+    image: rafaelc710/fiap_tech_challenge:1.0
     depends_on:
       - "app_db"
     container_name: foodapp-services
