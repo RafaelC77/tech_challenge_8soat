@@ -1,3 +1,4 @@
+using API.Extensions;
 using Application;
 using Application.Repository;
 using Application.UseCases;
@@ -13,9 +14,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+var conString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<FastFoodDbContext>(
-    options => options.UseNpgsql("Host=app_db;Port=5432;Database=SampleDbDriver;Username=postgres;Password=postgres"));
-
+    options => options.UseNpgsql(conString));
+    
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => 
@@ -49,6 +51,7 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyAPI v1");
     }
     );
+    app.ApplyMigrations();
 }
 
 //app.UseHttpsRedirection();
