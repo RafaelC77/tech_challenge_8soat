@@ -45,6 +45,12 @@ namespace API.Controllers
             return Ok(cliente);
         }
 
+        [HttpGet("test")]
+        public IActionResult Teste()
+        {
+            return Ok("teste");
+        }
+
         [HttpGet]
         public IActionResult ObterTodosClientes()
         {
