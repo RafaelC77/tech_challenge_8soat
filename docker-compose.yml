@@ -6,7 +6,7 @@ networks:
 
 services:
   food-app:
-    image: rafaelc710/fiap_tech_challenge:1.0
+    image: docker.io/library/foodapp
     depends_on:
       - "app_db"
     container_name: foodapp-services
@@ -16,7 +16,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - ConnectionStrings__DefaultConnection=User ID=postgres;Password=postgres;Server=app_db;Port=5432;Database=SampleDbDriver; IntegratedSecurity=true;Pooling=true;
+      - ConnectionStrings__DefaultConnection=Host=app_db;Port=5432;Database=postgres;Username=postgres;Password=postgres;
       - ASPNETCORE_URLS=http://+:8080
       - ASPNETCORE_ENVIRONMENT=Development
     networks:
@@ -28,7 +28,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=SampleDbDriver
+      - POSTGRES_DB=postgres
     ports:
       - "5433:5432"
     restart: always
