@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: c-foodappdeployment
-          image: rafaelc710/fiap_tech_challenge
+          image: rafaelc710/fiap_tech_challenge:1.2
           ports:
             - containerPort: 8080
           env:

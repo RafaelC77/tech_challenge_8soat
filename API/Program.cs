@@ -14,7 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-var conString = builder.Configuration.GetConnectionString("DefaultConnection");
+var conString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+    throw new InvalidOperationException("Connection string 'DefaultConnection' not found");
 builder.Services.AddDbContext<FastFoodDbContext>(
     options => options.UseNpgsql(conString));
     

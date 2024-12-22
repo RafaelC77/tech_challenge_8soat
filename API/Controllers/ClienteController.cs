@@ -37,7 +37,7 @@ namespace API.Controllers
             return Ok(cliente);
         }
 
-        [HttpGet("{cpf}")]
+        [HttpGet("GetByCpf/{cpf}")]
         public IActionResult ObterCliente(string cpf)
         {
             var cliente = _clienteUseCase.ObterPorCpf(cpf);
